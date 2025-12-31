@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Sparkle, Target, Palette, Article, Copy, ArrowClockwise } from '@phosphor-icons/react'
+import { Sparkle, Target, Palette, Article, Copy, ArrowClockwise, LightbulbFilament, TrendUp, Users } from '@phosphor-icons/react'
 import { Button } from '@/components/ui/button'
 import { Custom_Card } from '@/components/ui/custom_card'
 import { Textarea } from '@/components/ui/textarea'
@@ -98,6 +98,43 @@ Return your response as a JSON object with this exact structure:
           <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
             Transform your product description into comprehensive marketing strategies with persuasive copy, visual direction, and audience insights.
           </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8"
+        >
+          <Custom_Card className="px-4 py-4 text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-default">
+            <div className="flex flex-col items-center gap-2">
+              <div className="p-3 bg-coral/10 rounded-full">
+                <LightbulbFilament size={28} weight="fill" className="text-coral" />
+              </div>
+              <h3 className="font-semibold text-foreground">Creative Copy</h3>
+              <p className="text-sm text-muted-foreground">AI-generated persuasive messaging</p>
+            </div>
+          </Custom_Card>
+
+          <Custom_Card className="px-4 py-4 text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-default">
+            <div className="flex flex-col items-center gap-2">
+              <div className="p-3 bg-primary/10 rounded-full">
+                <TrendUp size={28} weight="fill" className="text-primary" />
+              </div>
+              <h3 className="font-semibold text-foreground">Visual Strategy</h3>
+              <p className="text-sm text-muted-foreground">Design direction and aesthetics</p>
+            </div>
+          </Custom_Card>
+
+          <Custom_Card className="px-4 py-4 text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-default">
+            <div className="flex flex-col items-center gap-2">
+              <div className="p-3 bg-accent/10 rounded-full">
+                <Users size={28} weight="fill" className="text-accent" />
+              </div>
+              <h3 className="font-semibold text-foreground">Target Audience</h3>
+              <p className="text-sm text-muted-foreground">Ideal customer profiling</p>
+            </div>
+          </Custom_Card>
         </motion.div>
 
         <AnimatePresence mode="wait">
@@ -277,6 +314,31 @@ Return your response as a JSON object with this exact structure:
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.3 }}
+              >
+                <Custom_Card className="px-6 shadow-lg border-2 bg-gradient-to-br from-lavender/20 to-accent/10">
+                  <div className="text-center space-y-3">
+                    <div className="flex justify-center">
+                      <div className="p-3 bg-primary rounded-full">
+                        <Sparkle size={24} weight="fill" className="text-primary-foreground" />
+                      </div>
+                    </div>
+                    <h3 className="text-lg font-semibold text-foreground">Next Steps</h3>
+                    <p className="text-sm text-muted-foreground max-w-md mx-auto">
+                      Use this marketing strategy as a foundation. Refine the copy, implement the visual direction, and target your ideal audience to maximize impact.
+                    </p>
+                    <div className="flex flex-wrap justify-center gap-3 pt-2">
+                      <Badge variant="secondary" className="px-3 py-1">Refine messaging</Badge>
+                      <Badge variant="secondary" className="px-3 py-1">Create visuals</Badge>
+                      <Badge variant="secondary" className="px-3 py-1">Launch campaign</Badge>
+                    </div>
+                  </div>
+                </Custom_Card>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.3 }}
                 className="flex justify-center pt-4"
               >
                 <Button
@@ -292,6 +354,50 @@ Return your response as a JSON object with this exact structure:
             </motion.div>
           )}
         </AnimatePresence>
+
+        {!strategy && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mt-12"
+          >
+            <Custom_Card className="px-6 bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20">
+              <div className="text-center space-y-4">
+                <h3 className="text-xl font-semibold text-foreground">How It Works</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+                  <div className="space-y-2">
+                    <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold mx-auto">
+                      1
+                    </div>
+                    <h4 className="font-medium text-foreground">Describe</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Enter details about your product or service
+                    </p>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold mx-auto">
+                      2
+                    </div>
+                    <h4 className="font-medium text-foreground">Generate</h4>
+                    <p className="text-sm text-muted-foreground">
+                      AI creates comprehensive marketing strategy
+                    </p>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold mx-auto">
+                      3
+                    </div>
+                    <h4 className="font-medium text-foreground">Implement</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Use the insights to launch your campaign
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Custom_Card>
+          </motion.div>
+        )}
       </div>
     </div>
   )
