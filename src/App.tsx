@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Sparkle, Target, Palette, Article, Copy, ArrowClockwise } from '@phosphor-icons/react'
 import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
+import { Custom_Card } from '@/components/ui/custom_card'
 import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
@@ -109,7 +109,7 @@ Return your response as a JSON object with this exact structure:
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }}
             >
-              <Card className="p-6 md:p-8 shadow-lg border-2">
+              <Custom_Card className="px-6 md:px-8 shadow-lg border-2">
                 <div className="space-y-4">
                   <div>
                     <label htmlFor="product-brief" className="block text-sm font-medium mb-2 text-foreground">
@@ -166,7 +166,7 @@ Return your response as a JSON object with this exact structure:
                     )}
                   </Button>
                 </div>
-              </Card>
+              </Custom_Card>
             </motion.div>
           ) : (
             <motion.div
@@ -182,7 +182,7 @@ Return your response as a JSON object with this exact structure:
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.3 }}
               >
-                <Card className="p-6 shadow-lg border-2 hover:shadow-xl transition-shadow duration-300">
+                <Custom_Card className="px-6 shadow-lg border-2 hover:shadow-xl transition-shadow duration-300">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-3">
                       <div className="p-2 bg-coral/10 rounded-lg">
@@ -206,7 +206,7 @@ Return your response as a JSON object with this exact structure:
                   <p className="text-base leading-relaxed text-foreground whitespace-pre-wrap">
                     {strategy.marketingCopy}
                   </p>
-                </Card>
+                </Custom_Card>
               </motion.div>
 
               <motion.div
@@ -214,7 +214,7 @@ Return your response as a JSON object with this exact structure:
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.3 }}
               >
-                <Card className="p-6 shadow-lg border-2 hover:shadow-xl transition-shadow duration-300">
+                <Custom_Card className="px-6 shadow-lg border-2 hover:shadow-xl transition-shadow duration-300">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-3">
                       <div className="p-2 bg-primary/10 rounded-lg">
@@ -238,7 +238,7 @@ Return your response as a JSON object with this exact structure:
                   <p className="text-base leading-relaxed text-foreground whitespace-pre-wrap">
                     {strategy.visualStrategy}
                   </p>
-                </Card>
+                </Custom_Card>
               </motion.div>
 
               <motion.div
@@ -246,7 +246,7 @@ Return your response as a JSON object with this exact structure:
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.3 }}
               >
-                <Card className="p-6 shadow-lg border-2 hover:shadow-xl transition-shadow duration-300">
+                <Custom_Card className="px-6 shadow-lg border-2 hover:shadow-xl transition-shadow duration-300">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-3">
                       <div className="p-2 bg-accent/10 rounded-lg">
@@ -270,7 +270,7 @@ Return your response as a JSON object with this exact structure:
                   <p className="text-base leading-relaxed text-foreground whitespace-pre-wrap">
                     {strategy.targetAudience}
                   </p>
-                </Card>
+                </Custom_Card>
               </motion.div>
 
               <motion.div
