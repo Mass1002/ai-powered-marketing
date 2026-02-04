@@ -1,0 +1,217 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net10.0-android;net10.0-ios;net10.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net10.0-windows10.0.19041.0</TargetFrameworks>
+
+		<!-- Note for MacCatalyst:
+		The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
+		When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifier>.
+		The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
+		either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
+		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
+
+		<OutputType>Exe</OutputType>
+		<RootNamespace>MyMauiApp</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<!-- Display name -->
+		<ApplicationTitle>MyMauiApp</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.mymauiapp</ApplicationId>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
+		<WindowsPackageType>None</WindowsPackageType>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
+		
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommonServiceLocator" Version="2.0.7" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="OxyPlot.Core" Version="2.2.0" />
+	    <PackageReference Include="OxyPlot.Maui.Skia" Version="1.1.0" />
+		<PackageReference Include="Plugin.Permissions" Version="6.0.1" />
+		<PackageReference Include="SharpZipLib" Version="1.4.2" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+		<PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
+	    <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.11" />
+	    <PackageReference Include="SQLitePCLRaw.core" Version="3.0.2" />
+		<PackageReference Include="Unity" Version="5.11.10" />
+		<PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+		<PackageReference Include="Xam.Plugin.Media" Version="6.0.2" />
+	    <PackageReference Include="ZXing.Net.Maui" Version="0.7.4" />
+	    <PackageReference Include="Microsoft.Maui.Controls" Version="10.0.30" />
+	    <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="10.0.30" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.7.4" />
+	</ItemGroup>
+
+		<ItemGroup Condition="'$(TargetFramework)' == 'net10.0-android'">
+		<PackageReference Include="FastAndroidCamera" Version="2.0.0" />
+		<PackageReference Include="CarouselView.Maui" Version="1.1.6" />
+		<PackageReference Include="GoogleGson" Version="2.13.2.1" />
+		<PackageReference Include="Plugin.CurrentActivity" Version="2.1.0.4" />
+		<PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.android" Version="2.1.11" />
+	</ItemGroup>
+	
+	    <ItemGroup Condition="'$(TargetFramework)' == 'net10.0-android'">
+      <PackageReference Include="Xamarin.AndroidX.Concurrent.Futures.Ktx">
+        <Version>1.3.0.2</Version>
+      </PackageReference>
+      <PackageReference Include="Xamarin.AndroidX.Tracing.Tracing.Ktx">
+        <Version>1.3.0.2</Version>
+      </PackageReference>
+    </ItemGroup>
+
+		<PropertyGroup>
+		<Company>YASKAWA Electric Corporation</Company>
+		<Authors>YASKAWA Electric Corporation</Authors>
+		<Copyright>Copyright © 2018 YASKAWA Electric Corporation</Copyright>
+	    <TargetFrameworks>net10.0-ios;net10.0-android</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<RootNamespace>Advanced-Security-Test</RootNamespace>
+		<UseMaui>True</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<!-- Display name -->
+		<ApplicationTitle>Advanced-Security-Test</ApplicationTitle>
+		<!-- App Identifier -->
+		<ApplicationId>jp.co.yaskawa.Advanced-Security-Test</ApplicationId>
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<!-- Android用のランタイムプラットフォームを設定 -->
+	<PropertyGroup Condition="'$(TargetFramework)'=='net10.0-android'">
+		<RuntimeIdentifiers>android-arm;android-arm64</RuntimeIdentifiers>
+	</PropertyGroup>
+
+	<!-- iOS用のランタイムプラットフォームを設定 -->
+	<PropertyGroup Condition="'$(TargetFramework)|$(Configuration)|$(Platform)'=='net10.0-ios|Release|AnyCPU'">
+		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+		<MtouchNoSymbolStrip>False</MtouchNoSymbolStrip>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net.10.0-ios|AnyCPU'">
+		<CreatePackage>false</CreatePackage>
+		<CodesignProvision>iPhone Development</CodesignProvision>
+		<CodesignKey>iPhone Developer</CodesignKey>
+		<BuildIpa>true</BuildIpa>
+	</PropertyGroup>
+
+	<!--Code signing is required in Debug in order to see the splash screen-->
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-ios|AnyCPU'">
+		<CreatePackage>false</CreatePackage>
+		<EnableCodeSigning>true</EnableCodeSigning>
+		<CodesignRequireProvisioningProfile>true</CodesignRequireProvisioningProfile>
+		<DisableCodesignVerification>true</DisableCodesignVerification>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetFramework)'=='net10.0-ios' and '$(Configuration)'=='Release-AppStore'">
+		<ProvisioningType>manual</ProvisioningType>
+		<CodesignKey>Apple Distribution: YASKAWA ELECTRIC CORPORATION (5N2358Z528)</CodesignKey>
+		<CodesignProvision>Distribution</CodesignProvision>
+	</PropertyGroup>
+
+	<!-- Debug時のみ Fast Deployment 有効 -->
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+		<AndroidEnableFastDeployment>true</AndroidEnableFastDeployment>
+	</PropertyGroup>
+	<!-- Release時は Fast Deployment 無効かつ DLL をAPKに埋め込む -->
+	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+		<AndroidEnableFastDeployment>false</AndroidEnableFastDeployment>
+		<EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android|AnyCPU'">
+	  <AndroidKeyStore>true</AndroidKeyStore>
+	  <AndroidSigningKeyStore>Platforms\Android\release.keystore</AndroidSigningKeyStore>
+	  <AndroidSigningKeyAlias>jp.co.yaskawa</AndroidSigningKeyAlias>
+	  <AndroidSigningKeyPass>$(AndroidSigningKeyPass)</AndroidSigningKeyPass>
+	  <AndroidSigningStorePass>$(AndroidSigningStorePass)</AndroidSigningStorePass>
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon for iOS App-->
+		<MauiIcon Include="Resources\AppIcon\ic_launcher.svg" />
+		<!-- Images -->
+		<!-- If it deletes this, the splash image will no longer be displayed on Android. -->
+		<MauiImage Include="Resources\Images\*" />
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\en\strings.xml" />
+		<EmbeddedResource Include="Resources\ja\strings.xml" />
+		<EmbeddedResource Include="Resources\zh_CN\strings.xml" />
+	</ItemGroup>
+
+    <ItemGroup>
+	    <PackageReference Include="CommonServiceLocator" Version="2.0.7" />
+	    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+	    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+	    <PackageReference Include="OxyPlot.Core" Version="2.2.0" />
+	    <PackageReference Include="OxyPlot.Maui.Skia" Version="1.0.2" />
+	    <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
+	    <PackageReference Include="SharpZipLib" Version="1.4.2" />
+	    <PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+	    <PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
+	    <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.8" />
+	    <PackageReference Include="SQLitePCLRaw.core" Version="2.1.8" />
+	    <PackageReference Include="Unity" Version="5.11.10" />
+	    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+	    <PackageReference Include="Xam.Plugin.Media" Version="6.0.2" />
+	    <PackageReference Include="ZXing.Net.Maui" Version="0.4.0" />
+	    <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.30" />
+	    <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.30" />
+	    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	    <PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
+    </ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net.9.0-android'">
+        <PackageReference Include="FastAndroidCamera" Version="2.0.0" />
+        <PackageReference Include="CarouselView.Maui" Version="1.0.9" />
+        <PackageReference Include="GoogleGson" Version="2.11.0" />
+        <PackageReference Include="Plugin.CurrentActivity" Version="2.0.1.4" />
+        <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.android" Version="2.1.8" />
+        <PackageReference Include="SQLitePCLRaw.provider.e_sqlite3.android" Version="1.1.14" />
+    </ItemGroup>
+</Project>
